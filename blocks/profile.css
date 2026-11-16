@@ -1,0 +1,1464 @@
+.profile {
+    color: white;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 1280px;
+    min-width: 0;
+    padding-top: 40px;
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+}
+
+.profile__avatar-container {
+    flex-shrink: 0;
+    position: relative;
+    width: 120px;
+    height: 120px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.profile__imagen {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+.profile__avatar-container:hover .profile__imagen {
+    opacity: 0.5;
+}
+
+.profile__info {
+    min-width: 0;
+    max-width: 50%;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-left: 30px;
+}
+
+.profile__usuario {
+    margin: 0;
+    padding-top: 22px;
+    padding-right: 36px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+    word-break: normal;
+
+
+}
+
+.profile__description {
+    margin: 0;
+    font-size: 18px;
+    padding-top: 16px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 50%;
+    box-sizing: border-box;
+    overflow-wrap: anywhere;
+    word-break: normal;
+}
+
+.profile__btnedit {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 25px;
+    right: 0;
+    border: 2px solid white;
+    background: black;
+    background-image: url(../images/Vector.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.profile__btnedit:hover {
+    opacity: 0.7;
+
+}
+
+.editor {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.editor__form {
+    background-color: #fefefe;
+    padding: 35px 36px;
+    border: 1px solid #888;
+    color: #C4C4C4;
+    border-radius: 10px;
+    position: absolute;
+    top: 195px;
+    left: 25%;
+}
+
+.editor__close {
+    color: #ffff;
+    background-image: url(../images/Close\ Icon.png);
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: -39px;
+    left: 435px;
+
+}
+
+.editor__tiulo {
+    color: black;
+    font-size: 24px;
+    margin: 0px;
+
+}
+
+.editor__close:hover {
+    opacity: 0.7;
+}
+
+.editor__form-edit {
+    color: #C4C4C4;
+    padding-top: 54px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.editor__form-edit label {
+    position: relative;
+}
+
+.editor__text {
+    height: 28px;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #C4C4C4;
+}
+
+
+.editor__btn-submit {
+    width: 358px;
+    height: 50px;
+    color: #C4C4C4;
+}
+
+.form__button_submit:hover {
+    opacity: 0.7;
+}
+
+
+#submitForm.activo {
+    color: #fefefe;
+    background-color: black;
+    cursor: pointer;
+}
+
+.profile__btnadd {
+    width: 150px;
+    height: 50px;
+    position: absolute;
+    bottom: 35px;
+    right: 0;
+    border: 2px solid white;
+    background: black;
+    background-image: url(../images/+.png);
+    background-repeat: no-repeat;
+    background-position: center;
+
+}
+
+.profile__btnadd:hover {
+    opacity: 0.7;
+}
+
+.submit {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.submit__form {
+    background-color: #fefefe;
+    padding: 35px 36px;
+    border: 1px solid #888;
+    color: #C4C4C4;
+    border-radius: 10px;
+    position: absolute;
+    top: 195px;
+    left: 25%;
+}
+
+.submit__close {
+    color: #ffff;
+    background-image: url(../images/Close\ Icon.png);
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: -39px;
+    left: 435px;
+
+}
+
+.submit__tiulo {
+    color: black;
+    font-size: 24px;
+    margin: 0px;
+
+}
+
+.submit__close:hover {
+    opacity: 0.7;
+}
+
+.submit__form-submit {
+    color: #C4C4C4;
+    padding-top: 54px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.submit__form-submit label {
+    position: relative;
+}
+
+.submit__name {
+    height: 28px;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #C4C4C4;
+
+}
+
+.submit__img {
+    height: 28px;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #C4C4C4;
+}
+
+.submit__btn-submit {
+    width: 358px;
+    height: 50px;
+    color: #fefefe;
+}
+
+
+#save.activo {
+    color: #fefefe;
+    background-color: black;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.form__input-error {
+    font-size: 12px;
+    color: red;
+    opacity: 0;
+    position: absolute;
+    top: calc(86% + 6px);
+    left: 0;
+    transition: 0.3s;
+}
+
+.form__input-error_active {
+    opacity: 1;
+}
+
+.form__input_type_error {
+    border-bottom: 1px solid rgba(255, 0, 0, 0.938);
+}
+
+
+.delet {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.delet__card {
+    background-color: #fefefe;
+    padding: 35px 36px;
+    border: 1px solid #888;
+    color: #C4C4C4;
+    border-radius: 10px;
+    position: absolute;
+    top: 195px;
+    left: 25%;
+}
+
+.delet__close {
+    color: #ffff;
+    background-image: url(../images/Close\ Icon.png);
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: -39px;
+    left: 435px;
+
+}
+
+.delet__tiulo {
+    color: black;
+    font-size: 24px;
+    margin: 0px;
+
+}
+
+.delet__close:hover {
+    opacity: 0.7;
+}
+
+.delet__form-delet {
+    color: #C4C4C4;
+    padding-top: 54px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.delet__form-delet label {
+    position: relative;
+}
+
+.delet__btn-delet {
+    width: 358px;
+    height: 50px;
+    color: #fefefe;
+    background-color: black;
+    border: none;
+    cursor: pointer;
+}
+
+.delet__btn-delet:hover {
+    opacity: 0.7;
+}
+
+.avatarEdit {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.avatar__form {
+    background-color: #fefefe;
+    padding: 35px 36px;
+    border: 1px solid #888;
+    color: #C4C4C4;
+    border-radius: 10px;
+    position: absolute;
+    top: 195px;
+    left: 25%;
+}
+
+.avatar__close {
+    color: #ffff;
+    background-image: url(../images/Close\ Icon.png);
+    width: 40px;
+    height: 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: -39px;
+    left: 435px;
+
+}
+
+.avatar__tiulo {
+    color: black;
+    font-size: 24px;
+    margin: 0px;
+
+}
+
+.avatar__close:hover {
+    opacity: 0.7;
+}
+
+.avatar__form-submit {
+    color: #C4C4C4;
+    padding-top: 54px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.avatar__form-submit label {
+    position: relative;
+}
+
+.avatar__img {
+    height: 28px;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid #C4C4C4;
+}
+
+.avatar__btn-submit {
+    width: 358px;
+    height: 50px;
+    color: #fefefe;
+}
+
+.avatar__btnedit {
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    top: 49px;
+    left: 50%;
+    z-index: 2;
+    border: none;
+    background: transparent;
+    background-image: url(../images/Vector2.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.profile__avatar-container:hover .avatar__btnedit {
+    opacity: 1;
+}
+
+#saveAvatar.activo {
+    color: #fefefe;
+    background-color: black;
+    cursor: pointer;
+}
+
+
+.profile__avatar-container {
+    position: relative;
+
+}
+
+@media screen and (max-width : 1113px) {
+
+
+    .profile__avatar-container {
+
+        left: 14px;
+    }
+
+
+
+    .profile__usuario {
+        font-size: 20px;
+
+    }
+
+    .profile__description {
+        font-size: 14px;
+        padding-top: 14px;
+    }
+
+    .profile__btnedit {
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 24px;
+
+    }
+
+    .profile__btnadd {
+        width: 120px;
+        height: 50px;
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+
+
+
+@media screen and (max-width : 880px) {
+    .profile {
+        padding: 42px 8px 0 8px;
+
+    }
+
+    .profile__avatar-container {
+        left: 20px;
+    }
+
+
+
+    .profile__usuario {
+        font-size: 20px;
+
+    }
+
+    .profile__description {
+        font-size: 14px;
+        padding-top: 14px;
+        min-width: 0;
+        max-width: 98%;
+    }
+
+    .profile__btnedit {
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 24px;
+
+    }
+
+    .profile__btnadd {
+        width: 120px;
+        height: 50px;
+        position: absolute;
+        bottom: 0;
+    }
+
+
+
+    .editor__form {
+        padding: 25px 22px;
+        position: absolute;
+        top: 139px;
+    }
+
+
+    .editor__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -29px;
+        left: 289px;
+    }
+
+    .editor__form-edit {
+        padding-top: 76px;
+        display: flex;
+        width: 238px;
+    }
+
+    .editor__text {
+        height: 17px;
+        width: 238px;
+    }
+
+    .editor__btn-submit {
+        width: 238px;
+        height: 46px;
+    }
+
+
+    .submit__form {
+        padding: 25px 22px;
+        position: absolute;
+        top: 130px;
+    }
+
+    .submit__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -29px;
+        left: 289px;
+
+    }
+
+    .submit__form-submit {
+        padding-top: 54px;
+        display: flex;
+        width: 238px;
+
+    }
+
+    .submit__btn-submit {
+        width: 238px;
+        height: 46px;
+    }
+
+    .delet__card {
+        padding: 25px 22px;
+        position: absolute;
+        top: 130px;
+    }
+
+    .delet__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -29px;
+        left: 289px;
+
+    }
+
+
+    .delet__form-delet {
+        padding-top: 54px;
+        display: flex;
+        width: 238px;
+    }
+
+    .delet__btn-delet {
+        width: 238px;
+        height: 46px;
+    }
+
+
+    .avatar__form {
+        padding: 25px 22px;
+        position: absolute;
+        top: 130px;
+    }
+
+    .avatar__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -29px;
+        left: 289px;
+
+    }
+
+
+    .avatar__tiulo {
+        color: black;
+        font-size: 24px;
+        margin: 0px;
+
+    }
+
+    .avatar__img {
+        height: 17px;
+        width: 238px;
+    }
+
+    .avatar__form-submit {
+        padding-top: 76px;
+        display: flex;
+        width: 238px;
+    }
+
+    .avatar__btn-submit {
+        width: 238px;
+        height: 46px;
+    }
+
+    .avatar__btnedit {
+
+        top: 49px;
+    }
+
+
+}
+
+@media screen and (max-width : 600px) {
+    .profile {
+        padding: 42px 8px 0 8px;
+
+
+    }
+
+    .profile__avatar-container {
+        left: 20px;
+    }
+
+
+
+    .profile__usuario {
+        font-size: 20px;
+
+    }
+
+    .profile__description {
+        font-size: 14px;
+        padding-top: 14px;
+        min-width: 0;
+        max-width: 75%;
+    }
+
+    .profile__btnedit {
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 24px;
+
+    }
+
+    .profile__btnadd {
+        width: 120px;
+        height: 50px;
+        position: absolute;
+    }
+
+
+
+    .editor__form {
+        padding: 25px 22px;
+        position: absolute;
+        top: 139px;
+    }
+
+
+    .editor__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -39px;
+        left: 265px;
+
+
+    }
+
+    .editor__form-edit {
+        padding-top: 76px;
+        display: flex;
+        width: 238px;
+    }
+
+    .editor__text {
+        height: 17px;
+        width: 238px;
+    }
+
+
+    .editor__btn-submit {
+        width: 238px;
+        height: 46px;
+    }
+
+    .submit__form {
+        padding: 25px 22px;
+        position: absolute;
+        top: 139px;
+    }
+
+    .submit__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -39px;
+        left: 265px;
+
+    }
+
+    .submit__form-submit {
+        padding-top: 76px;
+        display: flex;
+        width: 238px;
+
+    }
+
+    .submit__btn-submit {
+        width: 238px;
+        height: 46px;
+    }
+
+    .delet__card {
+        padding: 25px 22px;
+        position: absolute;
+        top: 139px;
+    }
+
+    .delet__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -39px;
+        left: 265px;
+
+    }
+
+
+    .delet__form-delet {
+        padding-top: 76px;
+        display: flex;
+        width: 238px;
+    }
+
+    .delet__btn-delet {
+        width: 238px;
+        height: 46px;
+    }
+
+    .avatarEdit {
+        box-sizing: border-box;
+        padding: 20px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+
+    .avatar__form {
+        padding: 25px 22px;
+        position: absolute;
+        top: 130px;
+    }
+
+    .avatar__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -39px;
+        left: 265px;
+
+    }
+
+
+    .avatar__tiulo {
+        color: black;
+        font-size: 24px;
+        margin: 0px;
+
+    }
+
+    .avatar__img {
+        height: 17px;
+        width: 238px;
+    }
+
+    .avatar__form-submit {
+        padding-top: 76px;
+        display: flex;
+        width: 238px;
+    }
+
+    .avatar__btn-submit {
+        width: 238px;
+        height: 46px;
+    }
+
+    .avatar__btnedit {
+        top: 49px;
+    }
+
+}
+
+@media screen and (max-width : 520px) {
+    .profile {
+        padding: 42px 19px 0 19px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .profile__avatar-container {
+        left: 30%;
+    }
+
+    .profile__info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        min-width: 51%;
+        max-width: 75%;
+
+    }
+
+    .profile__usuario {
+        font-size: 19px;
+        padding-top: 30px;
+        text-align: center;
+
+    }
+
+    .profile__description {
+        font-size: 15px;
+        padding-top: 14px;
+        text-align: center;
+    }
+
+    .profile__btnedit {
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 34px;
+    }
+
+    .profile__btnadd {
+        width: 274px;
+        height: 50px;
+        position: relative;
+        top: 36px;
+        left: 0px;
+    }
+
+
+
+    .editor__form {
+        padding: 25px 22px;
+        position: absolute;
+        top: 139px;
+        left: 19px;
+    }
+
+
+    .editor__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -39px;
+        left: 265px;
+
+
+    }
+
+    .editor__form-edit {
+        padding-top: 76px;
+        display: flex;
+        width: 238px;
+    }
+
+    .editor__text {
+        height: 17px;
+        width: 238px;
+    }
+
+
+    .editor__btn-submit {
+        width: 238px;
+        height: 46px;
+    }
+
+    .submit__form {
+        padding: 25px 22px;
+        position: absolute;
+        top: 139px;
+        left: 19px;
+    }
+
+    .submit__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -39px;
+        left: 265px;
+
+    }
+
+    .submit__form-submit {
+        padding-top: 76px;
+        display: flex;
+        width: 238px;
+
+    }
+
+    .submit__btn-submit {
+        width: 238px;
+        height: 46px;
+    }
+
+    .delet__card {
+        padding: 25px 22px;
+        position: absolute;
+        top: 139px;
+        left: 19px;
+    }
+
+    .delet__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -39px;
+        left: 265px;
+
+    }
+
+
+    .delet__form-delet {
+        padding-top: 76px;
+        display: flex;
+        width: 238px;
+    }
+
+    .delet__btn-delet {
+        width: 238px;
+        height: 46px;
+    }
+
+    .avatarEdit {
+        box-sizing: border-box;
+        padding: 20px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+
+    .avatar__form {
+        padding: 25px 22px;
+        position: absolute;
+        top: 130px;
+        left: 74px;
+    }
+
+    .avatar__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -39px;
+        left: 265px;
+
+    }
+
+
+    .avatar__tiulo {
+        color: black;
+        font-size: 24px;
+        margin: 0px;
+
+    }
+
+    .avatar__img {
+        height: 17px;
+        width: 238px;
+    }
+
+    .avatar__form-submit {
+        padding-top: 76px;
+        display: flex;
+        width: 238px;
+    }
+
+    .avatar__btn-submit {
+        width: 238px;
+        height: 46px;
+    }
+
+    .avatar__btnedit {
+        padding-left: 64px;
+        top: 49px;
+    }
+
+
+}
+
+
+@media screen and (max-width : 450px) {
+    .profile {
+        padding: 42px 19px 0 19px;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+
+    .profile__info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        min-width: 82%;
+        max-width: 75%;
+    }
+
+    .profile__usuario {
+        font-size: 18px;
+        padding-top: 30px;
+        text-align: center;
+
+    }
+
+    .profile__description {
+        font-size: 14px;
+        padding-top: 14px;
+        text-align: center;
+    }
+
+    .profile__btnedit {
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 34px;
+    }
+
+    .profile__btnadd {
+        width: 274px;
+        height: 50px;
+        position: relative;
+        top: 36px;
+        left: -15px;
+    }
+
+
+
+    .editor__form {
+        padding: 25px 15px;
+        position: absolute;
+        top: 139px;
+        left: 24px;
+    }
+
+
+    .editor__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -39px;
+        left: 245px;
+
+
+    }
+
+    .editor__form-edit {
+        padding-top: 76px;
+        display: flex;
+        width: 238px;
+    }
+
+    .editor__text {
+        height: 17px;
+        width: 238px;
+    }
+
+
+    .editor__btn-submit {
+        width: 238px;
+        height: 46px;
+    }
+
+    .submit__form {
+        padding: 25px 15px;
+        position: absolute;
+        top: 139px;
+        left: 19px;
+    }
+
+    .submit__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -39px;
+        left: 249px;
+
+    }
+
+    .submit__form-submit {
+        padding-top: 76px;
+        display: flex;
+        width: 238px;
+
+    }
+
+    .submit__btn-submit {
+        width: 238px;
+        height: 46px;
+    }
+
+    .delet__card {
+        padding: 25px 22px;
+        position: absolute;
+        top: 139px;
+        left: 19px;
+    }
+
+    .delet__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -39px;
+        left: 265px;
+
+    }
+
+
+    .delet__form-delet {
+        padding-top: 76px;
+        display: flex;
+        width: 238px;
+    }
+
+    .delet__btn-delet {
+        width: 238px;
+        height: 46px;
+    }
+
+    .avatarEdit {
+        box-sizing: border-box;
+        padding: 20px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+
+    .avatar__form {
+        padding: 25px 15px;
+        position: absolute;
+        top: 130px;
+        left: 24px;
+    }
+
+    .avatar__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -39px;
+        left: 248px;
+
+    }
+
+
+    .avatar__tiulo {
+        color: black;
+        font-size: 20px;
+        margin: 0px;
+
+    }
+
+    .avatar__img {
+        height: 17px;
+        width: 238px;
+    }
+
+    .avatar__form-submit {
+        padding-top: 46px;
+        display: flex;
+        width: 238px;
+    }
+
+    .avatar__btn-submit {
+        width: 238px;
+        height: 46px;
+    }
+
+    .avatar__btnedit {
+        left: 31px;
+        top: 49px;
+    }
+
+}
+
+
+@media screen and (max-width : 320px) {
+    .profile {
+        padding: 42px 19px 0 19px;
+        display: flex;
+        flex-direction: column;
+    }
+
+
+
+    .profile__info {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        min-width: 82%;
+        max-width: 75%;
+    }
+
+    .profile__usuario {
+        font-size: 18px;
+        padding-top: 30px;
+        text-align: center;
+
+    }
+
+    .profile__description {
+        font-size: 14px;
+        padding-top: 14px;
+        text-align: center;
+    }
+
+    .profile__btnedit {
+        width: 18px;
+        height: 18px;
+        position: absolute;
+        top: 34px;
+    }
+
+    .profile__btnadd {
+        width: 274px;
+        height: 50px;
+        position: relative;
+        top: 36px;
+        left: -15px;
+    }
+
+
+
+    .editor__form {
+        padding: 25px 15px;
+        position: absolute;
+        top: 139px;
+        left: 24px;
+    }
+
+
+    .editor__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -39px;
+        left: 245px;
+
+
+    }
+
+    .editor__form-edit {
+        padding-top: 76px;
+        display: flex;
+        width: 238px;
+    }
+
+    .editor__text {
+        height: 17px;
+        width: 238px;
+    }
+
+
+    .editor__btn-submit {
+        width: 238px;
+        height: 46px;
+    }
+
+    .submit__form {
+        padding: 25px 15px;
+        position: absolute;
+        top: 139px;
+        left: 19px;
+    }
+
+    .submit__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -39px;
+        left: 249px;
+
+    }
+
+    .submit__form-submit {
+        padding-top: 76px;
+        display: flex;
+        width: 238px;
+
+    }
+
+    .submit__btn-submit {
+        width: 238px;
+        height: 46px;
+    }
+
+    .delet__card {
+        padding: 25px 22px;
+        position: absolute;
+        top: 139px;
+        left: 19px;
+    }
+
+    .delet__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -39px;
+        left: 265px;
+
+    }
+
+
+    .delet__form-delet {
+        padding-top: 76px;
+        display: flex;
+        width: 238px;
+    }
+
+    .delet__btn-delet {
+        width: 238px;
+        height: 46px;
+    }
+
+    .avatarEdit {
+        box-sizing: border-box;
+        padding: 20px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+
+    .avatar__form {
+        padding: 25px 15px;
+        position: absolute;
+        top: 130px;
+        left: 24px;
+    }
+
+    .avatar__close {
+        width: 26px;
+        height: 26px;
+        position: absolute;
+        top: -39px;
+        left: 248px;
+
+    }
+
+
+    .avatar__tiulo {
+        color: black;
+        font-size: 20px;
+        margin: 0px;
+
+    }
+
+    .avatar__img {
+        height: 17px;
+        width: 238px;
+    }
+
+    .avatar__form-submit {
+        padding-top: 46px;
+        display: flex;
+        width: 238px;
+    }
+
+    .avatar__btn-submit {
+        width: 238px;
+        height: 46px;
+    }
+
+    .avatar__btnedit {
+        left: 31px;
+        top: 49px;
+    }
+
+}
