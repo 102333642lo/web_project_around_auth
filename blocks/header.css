@@ -60,6 +60,8 @@
 }
 
 @media screen and (max-width: 880px) {
+
+
     .header__titulo {
         padding-left: 27px;
     }
