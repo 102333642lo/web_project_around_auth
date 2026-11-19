@@ -1,0 +1,127 @@
+.popup.popup_opened {
+    display: flex;
+    position: fixed;
+    inset: 0;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 10;
+}
+
+.infotooltip__container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 430px;
+    min-height: 330px;
+    padding: 30px 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    color: #000;
+}
+
+.infotooltip__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    margin-bottom: 32px;
+    border: 2px solid;
+    border-radius: 50%;
+    font-size: 80px;
+    line-height: 1;
+}
+
+.infotooltip__icon_success {
+    border-color: #000;
+    color: #000;
+}
+
+.infotooltip__icon_error {
+    border-color: #ff0000;
+    color: #ff0000;
+}
+
+.infotooltip__message {
+    max-width: 350px;
+    margin: 0;
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.2;
+    text-align: center;
+}
+
+.popup__close {
+
+    color: #ffff;
+    background-color: transparent;
+    background-image: url(../images/Close\ Icon.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: none;
+    top: -39px;
+    left: 435px;
+
+
+}
+
+.popup__close:hover {
+    opacity: 0.7;
+}
+
+
+
+@media screen and (max-width: 640px) {
+    .infotooltip__container {
+        min-width: 280px;
+        width: 337px;
+    }
+
+    .infotooltip__icon {
+        width: 100px;
+        height: 100px;
+        font-size: 65px;
+    }
+
+    .infotooltip__message {
+        font-size: 20px;
+    }
+
+    .popup__close {
+
+        top: -80px;
+        left: 150px;
+
+    }
+}
+
+
+@media screen and (max-width: 385px) {
+    .infotooltip__container {
+        min-width: 280px;
+        width: 280px;
+        height: 308px;
+    }
+
+    .infotooltip__icon {
+        width: 100px;
+        height: 100px;
+        font-size: 65px;
+    }
+
+    .infotooltip__message {
+        font-size: 20px;
+    }
+
+    .popup__close {
+        left: 130px;
+
+    }
+}

@@ -1,79 +1,154 @@
-
 import { useState, useEffect } from "react";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
 import Header from "./Header/Header";
 import Main from "./Main/Main";
 import Footer from "./Footer/Footer";
-import CurrentUserContext from "../contexts/CurrentUserContext";
+import Login from "./Login/Login";
+import Register from "./Register/Register";
+import ProtectedRoute from "./ProtectedRoute";
 
+import CurrentUserContext from "../contexts/CurrentUserContext";
 import api from "../utils/api";
+import InfoTooltip from "./InfoTooltip/InfoTooltip";
+import { register, authorize, getUserInfo } from "../utils/auth";
+import { getToken, setToken, removeToken } from "../utils/token";
+
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [popup, setPopup] = useState(null);
   const [cards, setCards] = useState([]);
-  //* name: "Jacques Cousteau",
-  //*bio: "Explorador",
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isCheckingToken, setIsCheckingToken] = useState(true);
 
+  const navigate = useNavigate();
+
+  // Cargar las tarjetas
+  async function loadCards() {
+    const cardsData = await api.getInitialCards();
+    setCards(cardsData);
+  }
+
+  // Comprobar si existe un token válido
   useEffect(() => {
-    api
-      .getInitialCards()
-      .then((cards) => {
-        setCards(cards);
-      })
-      .catch((err) => {
-        console.error("Error al obtener las tarjetas:", err);
-      });
+    async function checkToken() {
+      const token = getToken();
+
+      if (!token) {
+        setIsCheckingToken(false);
+        return;
+      }
+
+      try {
+        const userData = await getUserInfo(token);
+        setCurrentUser(userData.data);
+
+        await loadCards();
+        setIsLoggedIn(true);
+      } catch (error) {
+        console.error("Error al comprobar la sesión:", error);
+        removeToken();
+      } finally {
+        setIsCheckingToken(false);
+      }
+    }
+
+    checkToken();
   }, []);
 
+  // Registro
+  async function handleRegister({ email, password }) {
+    try {
+      await register(email, password);
+      setPopup({ isSuccess: true });
+    } catch (error) {
+      console.error("Error al registrarse:", error);
+      setPopup({ isSuccess: false });
+    }
+  }
 
+  // Inicio de sesión
+  async function handleLogin({ email, password }) {
+    try {
+      const data = await authorize(email, password);
+
+      if (!data.token) {
+        throw new Error("No se recibió el token");
+      }
+
+      setToken(data.token);
+
+      const userData = await getUserInfo(data.token);
+      setCurrentUser(userData.data);
+
+      await loadCards();
+
+      setIsLoggedIn(true);
+      navigate("/");
+    } catch (error) {
+      console.error("Error al iniciar sesión:", error);
+      removeToken();
+    }
+  }
+
+  // Cerrar sesión
+  function handleLogout() {
+    removeToken();
+    setIsLoggedIn(false);
+    setCurrentUser({});
+    setCards([]);
+    navigate("/signin");
+  }
+
+  // Abrir ventana emergente
   function handleOpenPopup(popupData) {
     setPopup(popupData);
   }
+
+  // Cerrar ventana emergente
   function handleClosePopup() {
     setPopup(null);
   }
 
-
-  useEffect(() => {
-    (async () => {
-      await api.getUserInfo()
-        .then((userData) => {
-          setCurrentUser(userData);
-        })
-    })();
-  }, []);
-
+  // Actualizar perfil
   async function handleUpdateUser(data) {
     try {
       const newData = await api.editUserInfo(data);
-      setCurrentUser(newData);
+      setCurrentUser((currentUser) => ({
+        ...currentUser,
+        ...newData,
+      }));
       handleClosePopup();
     } catch (error) {
       console.error("Error al actualizar el perfil:", error);
       throw error;
     }
   }
+
+  // Actualizar avatar
   async function onUpdateAvatar(data) {
     try {
       const newData = await api.editAvatar(data);
-      setCurrentUser(newData);
+      setCurrentUser((currentUser) => ({
+        ...currentUser,
+        ...newData,
+      }));
       handleClosePopup();
     } catch (error) {
-      console.error("Error al actualizar el avatar :", error);
+      console.error("Error al actualizar el avatar:", error);
       throw error;
     }
   }
 
+  // Dar o quitar like
   async function handleLikeCard(cardId) {
     const card = cards.find((item) => item._id === cardId);
 
     if (!card) return;
 
-    const isLiked = card.isLiked;
-
     try {
-      const updatedCard = isLiked
+      const updatedCard = card.isLiked
         ? await api.deleteLikeCard(cardId)
         : await api.likeCard(cardId);
 
@@ -87,7 +162,7 @@ function App() {
     }
   }
 
-
+  // Eliminar tarjeta
   async function handleCardDelete(card) {
     try {
       await api.deleteCard(card._id);
@@ -104,6 +179,7 @@ function App() {
     }
   }
 
+  // Añadir tarjeta
   async function handleAddPlaceSubmit(placeData) {
     try {
       const newCard = await api.addCard({
@@ -119,24 +195,90 @@ function App() {
     }
   }
 
-
-
+  if (isCheckingToken) {
+    return null;
+  }
 
   return (
     <div className="page">
-      <CurrentUserContext.Provider value={{ currentUser, setCurrentUser, handleUpdateUser, onUpdateAvatar }}>
-        <Header />
-        <Main
-          cards={cards}
-          onCardLike={handleLikeCard}
-          onCardDelete={handleCardDelete}
-          onAddPlaceSubmit={handleAddPlaceSubmit}
-          onOpenPopup={handleOpenPopup}
-          onClosePopup={handleClosePopup}
-          popup={popup} />
-        <Footer />
+      <CurrentUserContext.Provider
+        value={{
+          currentUser,
+          setCurrentUser,
+          handleUpdateUser,
+          onUpdateAvatar,
+        }}
+      >
+        <Routes>
+          <Route
+            path="/signin"
+            element={
+              isLoggedIn ? (
+                <Navigate to="/" replace />
+              ) : (
+                <>
+                  <Header
+                    isLoggedIn={false}
+                    currentUser={currentUser}
+                    authPage="signin"
+                  />
+                  <Login onLogin={handleLogin} />
+                </>
+              )
+            }
+          />
+
+          <Route
+            path="/signup"
+            element={
+              isLoggedIn ? (
+                <Navigate to="/" replace />
+              ) : (<>
+                <Header
+                  isLoggedIn={false}
+                  currentUser={currentUser}
+                  authPage="signup"
+                />
+                <Register onRegister={handleRegister} />
+              </>
+              )
+            }
+          />
+
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute isLoggedIn={isLoggedIn}>
+                <>
+                  <Header
+                    isLoggedIn={isLoggedIn}
+                    currentUser={currentUser}
+                    onLogout={handleLogout}
+                  />
+
+                  <Main
+                    cards={cards}
+                    onCardLike={handleLikeCard}
+                    onCardDelete={handleCardDelete}
+                    onAddPlaceSubmit={handleAddPlaceSubmit}
+                    onOpenPopup={handleOpenPopup}
+                    onClosePopup={handleClosePopup}
+                    popup={popup}
+                  />
+
+                  <Footer />
+                </>
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+        <InfoTooltip
+          isOpen={Boolean(popup)}
+          onClose={handleClosePopup}
+          isSuccess={popup?.isSuccess}
+        />
       </CurrentUserContext.Provider>
-    </div>
+    </div >
   );
 }
 

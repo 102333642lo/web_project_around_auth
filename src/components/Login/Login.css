@@ -1,0 +1,82 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 358px;
+    margin: 60px auto 0;
+    color: #fff;
+}
+
+.login h2 {
+    margin: 0 0 40px;
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.login form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+}
+
+.login input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: transparent;
+    background-color: transparent;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+}
+
+.login input::placeholder {
+    color: #ccc;
+}
+
+.login button {
+    width: 100%;
+    min-height: 50px;
+    margin-top: 196px;
+    border: none;
+    border-radius: 2px;
+    background: #fff;
+    color: #000;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.login button:hover {
+    opacity: 0.7;
+}
+
+.login p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.login a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.login a:hover {
+    opacity: 0.6;
+}
+
+.login input:focus {
+    background-color: transparent;
+    outline: none;
+}
+
+.login input:-webkit-autofill,
+.login input:-webkit-autofill:hover,
+.login input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff;
+    transition: background-color 9999s ease-in-out 0s;
+}
