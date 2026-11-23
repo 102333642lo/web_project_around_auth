@@ -82,13 +82,16 @@ function App() {
       const userData = await getUserInfo(data.token);
       setCurrentUser(userData.data);
 
-      await loadCards();
-
       setIsLoggedIn(true);
       navigate("/");
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       removeToken();
+      return;
+    } try {
+      await loadCards();
+    } catch (error) {
+      console.error("Error al cargar las tarjetas:", error);
     }
   }
 

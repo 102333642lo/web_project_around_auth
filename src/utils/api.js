@@ -1,22 +1,12 @@
-import { getToken } from "./token";
-
 class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
-  }
-
-  _getHeaders() {
-    const token = getToken();
-
-    return {
-      authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    };
+    this._headers = options.headers;
   }
 
   getInitialCards() {
     return fetch(`${this._baseUrl}/cards`, {
-      headers: this._getHeaders(),
+      headers: this._headers,
     }).then((res) => {
       if (!res.ok) {
         return Promise.reject(`Error: ${res.status}`);
@@ -28,7 +18,7 @@ class Api {
   addCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: this._getHeaders(),
+      headers: this._headers,
       body: JSON.stringify(data),
     }).then((res) => {
       if (!res.ok) {
@@ -41,7 +31,7 @@ class Api {
   likeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
-      headers: this._getHeaders(),
+      headers: this._headers,
     }).then((res) => {
       if (!res.ok) {
         return Promise.reject(`Error: ${res.status}`);
@@ -53,7 +43,7 @@ class Api {
   deleteLikeCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
-      headers: this._getHeaders(),
+      headers: this._headers,
     }).then((res) => {
       if (!res.ok) {
         return Promise.reject(`Error: ${res.status}`);
@@ -65,7 +55,7 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
-      headers: this._getHeaders(),
+      headers: this._headers,
     }).then((res) => {
       if (!res.ok) {
         return Promise.reject(`Error: ${res.status}`);
@@ -75,8 +65,13 @@ class Api {
   }
 }
 
+
 const api = new Api({
   baseUrl: "https://around-api.es.tripleten-services.com/v1",
+  headers: {
+        authorization: "a00137cd-2bb8-45d9-8e68-e1ad963e9dd8",
+        "Content-Type": "application/json",
+    },
 });
 
 export default api;
