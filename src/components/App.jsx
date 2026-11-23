@@ -21,6 +21,7 @@ function App() {
   const [cards, setCards] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isCheckingToken, setIsCheckingToken] = useState(true);
+  const [registrationPopup, setRegistrationPopup] = useState(null);
 
   const navigate = useNavigate();
 
@@ -29,6 +30,8 @@ function App() {
     const cardsData = await api.getInitialCards();
     setCards(cardsData);
   }
+
+  // Comprobar si existe un token válido
 
   // Comprobar si existe un token válido
   useEffect(() => {
@@ -43,9 +46,15 @@ function App() {
       try {
         const userData = await getUserInfo(token);
         setCurrentUser(userData.data);
-
-        await loadCards();
         setIsLoggedIn(true);
+
+        // La carga de tarjetas es independiente de la sesión
+        try {
+          await loadCards();
+        } catch (error) {
+          console.error("Error al cargar las tarjetas:", error);
+        }
+
       } catch (error) {
         console.error("Error al comprobar la sesión:", error);
         removeToken();
@@ -57,14 +66,15 @@ function App() {
     checkToken();
   }, []);
 
+
   // Registro
   async function handleRegister({ email, password }) {
     try {
       await register(email, password);
-      setPopup({ isSuccess: true });
+      setRegistrationPopup({ isSuccess: true });
     } catch (error) {
       console.error("Error al registrarse:", error);
-      setPopup({ isSuccess: false });
+      setRegistrationPopup({ isSuccess: false });
     }
   }
 
@@ -276,9 +286,9 @@ function App() {
           />
         </Routes>
         <InfoTooltip
-          isOpen={Boolean(popup)}
-          onClose={handleClosePopup}
-          isSuccess={popup?.isSuccess}
+          isOpen={Boolean(registrationPopup)}
+          onClose={() => setRegistrationPopup(null)}
+          isSuccess={registrationPopup?.isSuccess}
         />
       </CurrentUserContext.Provider>
     </div >

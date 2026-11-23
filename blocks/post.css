@@ -26,7 +26,7 @@
 
 @media screen and (max-width : 880px) {
     .post {
-        padding: 46px 8px 0 8px;
+        padding: 46px 8px 8px;
     }
 
     .post__card {
@@ -38,6 +38,6 @@
 
 @media screen and (max-width : 320px) {
     .post {
-        padding: 46px 19px 0 0px;
+        padding: 46px 19px 0px;
     }
 }
