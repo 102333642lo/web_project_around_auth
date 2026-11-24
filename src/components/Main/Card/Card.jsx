@@ -7,7 +7,7 @@ import ImagePopup from "../ImagePopup/ImagePopup"
 export default function Card(props) {
   const { currentUser } = useContext(CurrentUserContext);
   const { name, link, isLiked } = props.card;
-  const { handleOpenPopup, handleLikeCard } = props;
+  const { handleOpenPopup, handleLikeCard, handleOpenRemovePopup, } = props
 
 
 
@@ -18,11 +18,7 @@ export default function Card(props) {
     popupClassName: "image_modal ",
     formClassName: "image__container",
   };
-  const { onCardDelete } = props;
 
-  function handleDeleteClick() {
-    onCardDelete(props.card);
-  }
 
   return (
     <li className="card">
@@ -37,7 +33,7 @@ export default function Card(props) {
               aria-label="Delete card"
               className="card__delet"
               type="button"
-              onClick={handleDeleteClick}
+              onClick={() => handleOpenRemovePopup(props.card)}
             />
 
             <h2 className="card__footer">{name}</h2>

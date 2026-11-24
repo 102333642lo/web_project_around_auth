@@ -55,7 +55,7 @@
     text-align: center;
 }
 
-.popup__close {
+.infotooltip__close {
 
     color: #ffff;
     background-color: transparent;
@@ -72,7 +72,7 @@
 
 }
 
-.popup__close:hover {
+.infotooltip__close:hover {
     opacity: 0.7;
 }
 
@@ -94,7 +94,7 @@
         font-size: 20px;
     }
 
-    .popup__close {
+    .infotooltip__close {
 
         top: -80px;
         left: 150px;
@@ -120,7 +120,7 @@
         font-size: 20px;
     }
 
-    .popup__close {
+    .infotooltip__close {
         left: 130px;
 
     }

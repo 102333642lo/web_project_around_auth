@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 
-function Login({ onLogin }) {
+function Login({ onLogin, errorMessage }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -34,12 +34,17 @@ function Login({ onLogin }) {
 
                 <button type="submit">Iniciar sesión</button>
             </form>
+            {errorMessage && (
+                <p className="login__error">{errorMessage}</p>
+            )}
+
 
             <p>
                 ¿Aún no eres miembro? <Link to="/signup">Regístrate aquí</Link>
             </p>
         </div>
     );
+
 }
 
 export default Login;

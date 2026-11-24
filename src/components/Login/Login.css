@@ -38,6 +38,11 @@
     color: #ccc;
 }
 
+.login__error {
+    color: #ff4d4d;
+    text-align: center;
+}
+
 .login button {
     width: 100%;
     min-height: 50px;
@@ -57,7 +62,6 @@
 .login p {
     margin-top: 15px;
     font-size: 14px;
-    color: #fff;
 }
 
 .login a {

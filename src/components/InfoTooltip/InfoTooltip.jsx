@@ -8,7 +8,7 @@ function InfoTooltip({ isOpen, onClose, isSuccess }) {
         <div className="popup popup_opened">
             <div className="popup__container infotooltip__container">
                 <button
-                    className="popup__close"
+                    className="infotooltip__close"
                     type="button"
                     aria-label="Cerrar"
                     onClick={onClose}

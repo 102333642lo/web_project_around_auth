@@ -11,7 +11,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import CurrentUserContext from "../contexts/CurrentUserContext";
 import api from "../utils/api";
 import InfoTooltip from "./InfoTooltip/InfoTooltip";
-import { register, authorize, getUserInfo } from "../utils/auth";
+import { register, authorize, getUserInfo as getAuthUserInfo, } from "../utils/auth";
 import { getToken, setToken, removeToken } from "../utils/token";
 
 
@@ -20,8 +20,10 @@ function App() {
   const [popup, setPopup] = useState(null);
   const [cards, setCards] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loginError, setLoginError] = useState("");
   const [isCheckingToken, setIsCheckingToken] = useState(true);
   const [registrationPopup, setRegistrationPopup] = useState(null);
+
 
   const navigate = useNavigate();
 
@@ -44,8 +46,14 @@ function App() {
       }
 
       try {
-        const userData = await getUserInfo(token);
-        setCurrentUser(userData.data);
+        const authData = await getAuthUserInfo(token);
+        const profileData = await api.getUserInfo();
+
+        setCurrentUser({
+          ...profileData,
+          email: authData.data.email,
+        });
+
         setIsLoggedIn(true);
 
         // La carga de tarjetas es independiente de la sesión
@@ -72,6 +80,7 @@ function App() {
     try {
       await register(email, password);
       setRegistrationPopup({ isSuccess: true });
+      navigate("/signin");
     } catch (error) {
       console.error("Error al registrarse:", error);
       setRegistrationPopup({ isSuccess: false });
@@ -80,6 +89,7 @@ function App() {
 
   // Inicio de sesión
   async function handleLogin({ email, password }) {
+    setLoginError("");
     try {
       const data = await authorize(email, password);
 
@@ -89,19 +99,27 @@ function App() {
 
       setToken(data.token);
 
-      const userData = await getUserInfo(data.token);
-      setCurrentUser(userData.data);
+      const authData = await getAuthUserInfo(data.token);
+      const profileData = await api.getUserInfo();
+      setCurrentUser({
+        ...profileData,
+        email: authData.data.email,
+      });
 
       setIsLoggedIn(true);
       navigate("/");
+
+      try {
+        await loadCards();
+      } catch (error) {
+        console.error("Error al cargar las tarjetas:", error);
+      }
     } catch (error) {
       console.error("Error al iniciar sesión:", error);
       removeToken();
-      return;
-    } try {
-      await loadCards();
-    } catch (error) {
-      console.error("Error al cargar las tarjetas:", error);
+      setLoginError(
+        "No se pudo iniciar sesión. Comprueba tu correo y contraseña."
+      );
     }
   }
 
@@ -235,7 +253,10 @@ function App() {
                     currentUser={currentUser}
                     authPage="signin"
                   />
-                  <Login onLogin={handleLogin} />
+                  <Login
+                    onLogin={handleLogin}
+                    errorMessage={loginError}
+                  />
                 </>
               )
             }
@@ -284,6 +305,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <InfoTooltip
           isOpen={Boolean(registrationPopup)}
